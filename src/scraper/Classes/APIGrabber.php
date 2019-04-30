@@ -10,7 +10,7 @@
 		 * APIGrabber constructor.
 		 *
 		 * This constructor accepts a curl object and initialises
-		 *and object that interacts with an API
+		 * an object that interacts with an API
 		 *
 		 * @param $curl
 		 */
