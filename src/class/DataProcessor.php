@@ -5,7 +5,7 @@ class DataProcessor
     public $curlHandler;
     public $db;
 
-    public function __construct(CurlHandler $curlHandler, DBConn $db)
+    public function __construct(CurlHandler $curlHandler, DBConnection $db)
     {
         $this->curlHandler = $curlHandler;
         $this->db = $db;
@@ -44,5 +44,22 @@ class DataProcessor
         }
     }
 
-
+    public function createImageUrlWithId($breeds)
+    {
+        $result = [];
+        $placeholder = [];
+        foreach ($breeds as $breed) {
+            $placeholder['id'] = $breed['id'];
+            $main = $breed['breed_name'];
+            if (strlen($breed['sub_breed']) > 0) {
+                $sub = $breed['sub_breed'];
+                $placeholder['urlRequest'] = 'https://dog.ceo/api/breed/'.$main.'-'.$sub.'/images';
+            } else {
+                $placeholder['urlRequest'] = 'https://dog.ceo/api/breed/'.$main.'/images';
+            }
+            array_push($result, $placeholder);
+        }
+        return $result;
+    }
+    
 }
