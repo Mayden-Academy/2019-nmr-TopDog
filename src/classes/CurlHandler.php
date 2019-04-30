@@ -9,7 +9,6 @@ class CurlHandler {
      *
      * this construct method initialises the curl
      *
-     * returns a string
      */
     public function __construct()
     {
@@ -20,7 +19,7 @@ class CurlHandler {
     /**
      * gets the curl handle
      *
-     * @return false|resource the private $ch
+     * @returns the private $ch
      */
     public function getCurlHandle()
     {
