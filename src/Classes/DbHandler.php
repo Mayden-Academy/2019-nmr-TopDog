@@ -1,14 +1,5 @@
 <?php
 
-
-
-$breed_name = 'hound';
-$sub_breed = 'rich';
-$url_image = 'www.google.co.uk/robothouseeeee';
-$breed_id = 4;
-
-
-
 /**
  * Class DbHandler handles inputting breeds into db, inserting images into the db based on the breed, and retrieving the breed name, sub breed
  * and id when required.
@@ -74,9 +65,3 @@ class DbHandler
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 }
-
-$test = new DbHandler($db);
-var_dump($test->insertBreed($db, $breed_name, $sub_breed));
-$thing = $test->getBreed($db);
-$test->insertImages($db, $breed_id, $url_image);
-var_dump($thing);
