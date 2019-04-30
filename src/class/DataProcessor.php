@@ -2,14 +2,14 @@
 
 class DataProcessor
 {
-    public $curlHandler;
-    public $db;
-
-    public function __construct(CurlHandler $curlHandler, DBConnection $db)
-    {
-        $this->curlHandler = $curlHandler;
-        $this->db = $db;
-    }
+//    public $curlHandler;
+//    public $db;
+//
+//    public function __construct(CurlHandler $curlHandler, DBConnection $db)
+//    {
+//        $this->curlHandler = $curlHandler;
+//        $this->db = $db;
+//    }
 
     public function processBreedData($breed) : array
     {
@@ -18,7 +18,7 @@ class DataProcessor
         if (!$this->successApiRequest($breed)) {
             return ['errorMessage' => 'Not successful'];
         } else {
-            foreach ($breed["message"] as $key => $value) {
+            foreach ($breed['message'] as $key => $value) {
                 if (count($value) > 0) {
                     foreach ($value as $subBreed) {
                         $placeholder['breed_name'] = $key;
@@ -53,13 +53,29 @@ class DataProcessor
             $main = $breed['breed_name'];
             if (strlen($breed['sub_breed']) > 0) {
                 $sub = $breed['sub_breed'];
-                $placeholder['urlRequest'] = 'https://dog.ceo/api/breed/'.$main.'-'.$sub.'/images';
+                $placeholder['urlRequest'] = 'https=>//dog.ceo/api/breed/'.$main.'-'.$sub.'/images';
             } else {
-                $placeholder['urlRequest'] = 'https://dog.ceo/api/breed/'.$main.'/images';
+                $placeholder['urlRequest'] = 'https=>//dog.ceo/api/breed/'.$main.'/images';
             }
             array_push($result, $placeholder);
         }
         return $result;
     }
-    
+
+    public function processImageData($images, $urls)
+    {
+        $result = [];
+        $placeholder = [];
+        if (!$this->successApiRequest($images)) {
+            return ['errorMessage' => 'Not successful'];
+    } else {
+            $placeholder['id'] = $urls['id'];
+            $placeholder['urlImage'] = [];
+            foreach ($images['message'] as $value) {
+                array_push($placeholder['urlImage'], $value);
+            }
+            array_push($result, $placeholder);
+        }
+        return $result;
+    }
 }
