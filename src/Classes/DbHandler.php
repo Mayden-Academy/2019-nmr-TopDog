@@ -1,6 +1,6 @@
 <?php
-echo "catty";
-$db = new PDO('mysql:host=127.0.0.1; dbname=top_dog', 'root');
+
+
 
 $breed_name = 'hound';
 $sub_breed = 'rich';
@@ -25,7 +25,7 @@ class DbHandler
      *
      * @param $db PDO connection to the database
      */
-    public function __construct($db) {
+    public function __construct(DbConnection $db) {
         $this->dbConnection = $db;
     }
 
@@ -38,7 +38,7 @@ class DbHandler
      *
      * @return boolean dependent on if insertion is successful
      */
-    public function insertBreed ($db, string $breed_name, string $sub_breed) :bool{
+    public function insertBreed (DbConnection $db, string $breed_name, string $sub_breed) :bool{
         $query = $db->prepare("INSERT INTO `breed_table` (`breed_name`, `sub_breed`) VALUES (:breed_name,:sub_breed)");
         $query->bindParam(':breed_name', $breed_name);
         $query->bindParam(':sub_breed', $sub_breed);
@@ -54,7 +54,7 @@ class DbHandler
      *
      * @return boolean dependent on if insertion is successful
      */
-    public function insertImages ($db, string $breed_id, string $url_image) :bool{
+    public function insertImages (DbConnection $db, string $breed_id, string $url_image) :bool{
         $query = $db->prepare("INSERT INTO `image_table` (`breed_id`, `url_image`) VALUES (:breed_id,:url_image)");
         $query->bindParam(':breed_id', $breed_id);
         $query->bindParam(':url_image', $url_image);
@@ -68,7 +68,7 @@ class DbHandler
      *
      * @return array containing the the id, breed_name and sub_breed
      */
-    public function getBreed ($db) :array{
+    public function getBreed (DbConnection $db) :array{
         $query= $db->prepare("SELECT `id`, `breed_name`, `sub_breed` FROM `breed_table`");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
