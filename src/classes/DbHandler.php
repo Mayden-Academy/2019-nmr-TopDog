@@ -1,4 +1,13 @@
 <?php
+echo "catty";
+$db = new PDO('mysql:host=127.0.0.1; dbname=top_dog', 'root');
+
+$breed_name = 'hound';
+$sub_breed = 'rich';
+$url_image = 'www.google.co.uk/robothouseeeee';
+$breed_id = 4;
+
+
 
 /**
  * Class DbHandler handles inputting breeds into db, inserting images into the db based on the breed, and retrieving the breed name, sub breed
@@ -29,7 +38,7 @@ class DbHandler
      *
      * @return boolean dependent on if insertion is successful
      */
-    public function insertBreed ($db, $breed_name, $sub_breed) {
+    public function insertBreed ($db, string $breed_name, string $sub_breed) :bool{
         $query = $db->prepare("INSERT INTO `breed_table` (`breed_name`, `sub_breed`) VALUES (:breed_name,:sub_breed)");
         $query->bindParam(':breed_name', $breed_name);
         $query->bindParam(':sub_breed', $sub_breed);
@@ -45,7 +54,7 @@ class DbHandler
      *
      * @return boolean dependent on if insertion is successful
      */
-    public function insertImages ($db, $breed_id, $url_image) {
+    public function insertImages ($db, string $breed_id, string $url_image) :bool{
         $query = $db->prepare("INSERT INTO `image_table` (`breed_id`, `url_image`) VALUES (:breed_id,:url_image)");
         $query->bindParam(':breed_id', $breed_id);
         $query->bindParam(':url_image', $url_image);
@@ -59,9 +68,15 @@ class DbHandler
      *
      * @return array containing the the id, breed_name and sub_breed
      */
-    public function getBreed ($db) {
+    public function getBreed ($db) :array{
         $query= $db->prepare("SELECT `id`, `breed_name`, `sub_breed` FROM `breed_table`");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+
+$test = new DbHandler($db);
+var_dump($test->insertBreed($db, $breed_name, $sub_breed));
+$thing = $test->getBreed($db);
+$test->insertImages($db, $breed_id, $url_image);
+var_dump($thing);
