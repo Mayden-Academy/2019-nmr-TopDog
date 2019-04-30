@@ -1,5 +1,7 @@
 <?php
 
+namespace TopDog\scraper\Classes;
+
 class CurlHandler {
 
     private $ch;
