@@ -2,16 +2,33 @@
 
 class DataProcessor
 {
-//    public $curlHandler;
-//    public $db;
-//
-//    public function __construct(CurlHandler $curlHandler, DBConnection $db)
-//    {
-//        $this->curlHandler = $curlHandler;
-//        $this->db = $db;
-//    }
+    public $curlHandler;
+    public $db;
 
-    public function processBreedData($breed) : array
+    /**
+     * DataProcessor constructor.
+     *
+     * @param CurlHandler $curlHandler Curl Request from Class CurlHandler
+     *
+     * @param DBConnection $db Connection from Class DBConnection
+     */
+
+    public function __construct(CurlHandler $curlHandler, DBConnection $db)
+    {
+        $this->curlHandler = $curlHandler;
+        $this->db = $db;
+    }
+
+
+    /**
+     * Takes array and reconfigures into another array
+     *
+     * @param array $breed Array taken from API
+     *
+     * @return array $result Array that is put into database
+     */
+
+    public function processBreedData(array $breed) : array
     {
         $result = [];
         $placeholder = [];
@@ -35,7 +52,15 @@ class DataProcessor
         }
     }
 
-    public function successApiRequest($breed)
+    /**
+     * Checks if API request has been successful
+     *
+     * @param  array $breed Array taken from API
+     *
+     * @return bool Result of if statement
+     */
+
+    public function successApiRequest(array $breed) : bool
     {
         if ($breed["status"] === "success"){
             return true;
@@ -44,7 +69,15 @@ class DataProcessor
         }
     }
 
-    public function createImageUrlWithId($breeds)
+    /**
+     * Takes id from array taken from top_dog database and creates an id linked to url
+     *
+     * @param array $breeds Array taken from database
+     *
+     * @return array $result Array with ids and url for request
+     */
+
+    public function createImageUrlWithId(array $breeds) : array
     {
         $result = [];
         $placeholder = [];
