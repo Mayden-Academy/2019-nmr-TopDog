@@ -36,9 +36,11 @@ class DataProcessor
             foreach ($breed['message'] as $key => $value) {
                 if (count($value) > 0) {
                     foreach ($value as $subBreed) {
-                        $placeholder['breed_name'] = $key;
-                        $placeholder['sub_breed'] = $subBreed;
-                        array_push($result, $placeholder);
+                        if ($key !== 'cattledog') {
+                            $placeholder['breed_name'] = $key;
+                            $placeholder['sub_breed'] = $subBreed;
+                            array_push($result, $placeholder);
+                        }
                     }
                 } else {
                     $placeholder['breed_name'] = $key;
