@@ -52,10 +52,10 @@ LIMIT 1");
      */
     public function insertImages (string $breed_id, string $url_image) :bool{
         $db = $this->dbConnection->getPDO();
-        $query = $db->prepare("INSERT INTO `image_table` (`breed_id`, `url_image`) 
-SELECT :breed_id,:url_image FROM `image_table` 
+        $query = $db->prepare("INSERT INTO `image_table` (`url_image`, `breed_id`) 
+SELECT :url_image, :breed_id FROM `image_table` 
 WHERE NOT EXISTS (SELECT * FROM `image_table` 
-      WHERE `breed_id`= :breed_id AND `url_image`= :url_image) 
+      WHERE `url_image`= :url_image AND `breed_id`= :breed_id) 
 LIMIT 1");
         $query->bindParam(':breed_id', $breed_id);
         $query->bindParam(':url_image', $url_image);
