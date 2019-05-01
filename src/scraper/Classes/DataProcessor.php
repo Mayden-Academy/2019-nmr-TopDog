@@ -1,5 +1,7 @@
 <?php
 
+namespace TopDog\scraper\Classes;
+
 class DataProcessor
 {
     public $curlHandler;
@@ -13,7 +15,7 @@ class DataProcessor
      * @param DBConnection $db Connection from Class DBConnection
      */
 
-    public function __construct(CurlHandler $curlHandler, DBConnection $db)
+    public function __construct(CurlHandler $curlHandler, dbConnection $db)
     {
         $this->curlHandler = $curlHandler;
         $this->db = $db;
