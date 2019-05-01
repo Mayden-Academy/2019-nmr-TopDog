@@ -24,7 +24,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 <div class="favouriteDogContainer">
 <!--    GET RID OF THIS BEFORE MERGING-->
     <div class='best-dog'>
-        <div class='dog-image'></div>
+        <div class='dog-image'>
+            <img src='../../ashby.jpg' alt='doggy'>
+        </div>
     </div>
 
     <?php
@@ -36,7 +38,7 @@ require_once __DIR__ . '/vendor/autoload.php';
     ?>
 
     <div class='dog-holder'>
-
+    
     </div>
     <div class='dog-holder'>
 
