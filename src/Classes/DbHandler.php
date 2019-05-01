@@ -32,7 +32,11 @@ class DbHandler
      */
     public function insertBreed (string $breed_name, string $sub_breed) :bool{
         $db = $this->dbConnection->getPDO();
-        $query = $db->prepare("INSERT INTO `breed_table` (`breed_name`, `sub_breed`) VALUES (:breed_name,:sub_breed)");
+        $query = $db->prepare("INSERT INTO `breed_table` (`breed_name`, `sub_breed`) 
+SELECT :breed_name, :sub_breed FROM `breed_table` 
+WHERE NOT EXISTS (SELECT * FROM `breed_table` 
+      WHERE `breed_name`= :breed_name AND `sub_breed`= :sub_breed) 
+LIMIT 1");
         $query->bindParam(':breed_name', $breed_name);
         $query->bindParam(':sub_breed', $sub_breed);
         return $query->execute();
