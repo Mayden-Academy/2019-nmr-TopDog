@@ -4,38 +4,34 @@ namespace TopDog\scraper\Classes;
 
 class DataProcessor
 {
-    public $curlHandler;
-    public $db;
+    public $APIGrabber;
 
     /**
      * DataProcessor constructor.
      *
-     * @param CurlHandler $curlHandler Curl Request from Class CurlHandler
-     *
-     * @param DBConnection $db Connection from Class DBConnection
+     * @param APIGrabber $APIGrabber API Request from Class APIGrabber
      */
 
-    public function __construct(CurlHandler $curlHandler, dbConnection $db)
+    public function __construct(APIGrabber $APIGrabber)
     {
-        $this->curlHandler = $curlHandler;
-        $this->db = $db;
+        $this->APIGrabber = $APIGrabber;
     }
 
 
     /**
      * Takes array and reconfigures into another array
      *
-     * @param array $breed Array taken from API
-     *
      * @return array $result Array that is put into database
      */
 
-    public function processBreedData(array $breed) : array
+    public function processBreedData() : array
     {
         $result = [];
         $placeholder = [];
+        $response = $this->APIGrabber->getData('https://dog.ceo/api/breeds/list/all');
+        $breed = $this->APIGrabber->jsonData($response);
         if (!$this->successApiRequest($breed)) {
-            return ['errorMessage' => 'Not successful'];
+            $result['errorMessage'] = 'Not successful';
         } else {
             foreach ($breed['message'] as $key => $value) {
                 if (count($value) > 0) {
@@ -50,8 +46,8 @@ class DataProcessor
                     array_push($result, $placeholder);
                 }
             }
-            return $result;
         }
+        return $result;
     }
 
     /**
@@ -100,26 +96,28 @@ class DataProcessor
     /**
      * Takes Url requests array and API images array and generates a new array that has id referring to a breed and all the url images of that breed
      *
-     * @param array $images The API array response
-     *
      * @param array $urls The Urls for the request
      *
      * @return array The reorganised array that will be put into the database
      */
 
-    public function processImageData(array $images, array $urls) : array
+    public function processImageData(array $urls) : array
     {
         $result = [];
-        $placeholder = [];
-        if (!$this->successApiRequest($images)) {
-            return ['errorMessage' => 'Not successful'];
-    } else {
-            $placeholder['id'] = $urls['id'];
-            $placeholder['urlImage'] = [];
-            foreach ($images['message'] as $value) {
-                array_push($placeholder['urlImage'], $value);
+        foreach ($urls as $url) {
+            $response = $this->APIGrabber->getData($url['urlRequest']);
+            $images = $this->APIGrabber->jsonData($response);
+            $placeholder = [];
+            if (!$this->successApiRequest($images)) {
+                $result['errorMessage'] = 'Not successful';
+            } else {
+                $placeholder['id'] = $url['id'];
+                $placeholder['urlImage'] = [];
+                foreach ($images['message'] as $value) {
+                    array_push($placeholder['urlImage'], $value);
+                }
+                array_push($result, $placeholder);
             }
-            array_push($result, $placeholder);
         }
         return $result;
     }
