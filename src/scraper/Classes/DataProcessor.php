@@ -11,19 +11,16 @@ class DataProcessor
      *
      * @param APIGrabber $APIGrabber API Request from Class APIGrabber
      */
-
     public function __construct(APIGrabber $APIGrabber)
     {
         $this->APIGrabber = $APIGrabber;
     }
 
-
     /**
-     * Takes array and reconfigures into another array
+     * Sends an API request and reorganises data to store in the database
      *
      * @return array $result Array that is put into database
      */
-
     public function processBreedData(): array
     {
         $result = [];
@@ -63,7 +60,6 @@ class DataProcessor
      *
      * @return bool Result of if statement
      */
-
     public function successApiRequest(array $breed): bool
     {
         if ($breed["status"] === "success") {
@@ -78,9 +74,8 @@ class DataProcessor
      *
      * @param array $breeds Array taken from database
      *
-     * @return array $result Array with ids and url for request
+     * @return array $result Array with ids of breed and url for API request to store images
      */
-
     public function createImageUrlWithId(array $breeds): array
     {
         $result = [];
@@ -108,7 +103,6 @@ class DataProcessor
      *
      * @return array The reorganised array that will be put into the database
      */
-
     public function processImageData(array $urls): array
     {
         $result = [];
