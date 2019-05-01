@@ -6,13 +6,25 @@ An app to scrape data from the https://dog.ceo/dog-api/ Dog Pictures API and add
 
 Designed to be used with the NMR Top-dog App.
 
+##Compatibility
+
+To be used with Vagrant VM.
+
 ##Installation
 
 * Clone git repo on local machine. 
 * Setup database to receive info:
-  * Import the .sql files in the 'db' directory to your database.
+  * Create a database called 'top_dog'
+  * In the 'top_dog' database - import the .sql files in the 'db' directory to your database.
   
 ##Usage
+
+*As of April 2019 running this scraper will grab around 20,000 rows of data, and may take up to 2 mins to run*
+
+* Using terminal, SSH into your Vagrant machine using ```vagrant ssh```
+* ```cd``` to the location of the top dog project using your Vagrant command line
+* inside the top dog folder, navigate to ```src/scraper```
+ 
 
 ##Contributing
 
