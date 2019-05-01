@@ -12,7 +12,7 @@ class DataProcessorTest extends Testcase
         $this->assertInternalType('object', $dataProcessor);
     }
 
-    public function testCreateImageUrlSucessWithSubBreed()
+    public function testCreateImageUrlSuccessWithSubBreed()
     {
         $APIGrabber = $this->createMock(TopDog\scraper\Classes\APIGrabber::class);
         $dataProcessor = new TopDog\scraper\Classes\DataProcessor($APIGrabber);
