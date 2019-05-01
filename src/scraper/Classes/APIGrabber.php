@@ -26,7 +26,6 @@
 		public function getData($url) : String{
 			curl_setopt($this->ch, CURLOPT_URL, $url);
 			$output = curl_exec($this->ch);
-			curl_close($this->ch);
 			return $output;
 		}
 
