@@ -82,15 +82,17 @@ class DataProcessor
         $result = [];
         $placeholder = [];
         foreach ($breeds as $breed) {
-            $placeholder['id'] = $breed['id'];
-            $main = $breed['breed_name'];
-            if (strlen($breed['sub_breed']) > 0) {
-                $sub = $breed['sub_breed'];
-                $placeholder['urlRequest'] = 'https://dog.ceo/api/breed/' . $main . '-' . $sub . '/images';
-            } else {
-                $placeholder['urlRequest'] = 'https://dog.ceo/api/breed/' . $main . '/images';
+            if(count($breed, true) > 0) {
+                $placeholder['id'] = $breed['id'];
+                $main = $breed['breed_name'];
+                if (strlen($breed['sub_breed']) > 0) {
+                    $sub = $breed['sub_breed'];
+                    $placeholder['urlRequest'] = 'https://dog.ceo/api/breed/' . $main . '-' . $sub . '/images';
+                } else {
+                    $placeholder['urlRequest'] = 'https://dog.ceo/api/breed/' . $main . '/images';
+                }
+                array_push($result, $placeholder);
             }
-            array_push($result, $placeholder);
         }
         return $result;
     }
