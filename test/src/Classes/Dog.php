@@ -1,10 +1,4 @@
 <?php
-	/**
-	 * Created by PhpStorm.
-	 * User: academy
-	 * Date: 2019-05-01
-	 * Time: 13:29
-	 */
 
     require_once '../../../vendor/autoload.php';
 

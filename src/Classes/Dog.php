@@ -1,10 +1,4 @@
 <?php
-	/**
-	 * Created by PhpStorm.
-	 * User: academy
-	 * Date: 2019-05-01
-	 * Time: 11:55
-	 */
 
 	namespace TopDog\Classes;
 
