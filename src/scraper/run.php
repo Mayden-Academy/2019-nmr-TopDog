@@ -14,7 +14,8 @@ $breeds = $dbHandler->getBreed();
 $urlRequests = $dataProcessor->createImageUrlWithId($breeds);
 $arrayImages = $dataProcessor->processImageData($urlRequests);
 foreach ($arrayImages as $images) {
-    foreach ($images['urlImages'] as $url) {
-        $dbHandler->insertImages($arrayImages['id'], $url);
+    foreach ($images['urlImage'] as $url) {
+        $dbHandler->insertImages($images['id'], $url);
     }
 }
+
