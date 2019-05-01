@@ -97,7 +97,17 @@ class DataProcessor
         return $result;
     }
 
-    public function processImageData($images, $urls)
+    /**
+     * Takes Url requests array and API images array and generates a new array that has id referring to a breed and all the url images of that breed
+     *
+     * @param array $images The API array response
+     *
+     * @param array $urls The Urls for the request
+     *
+     * @return array The reorganised array that will be put into the database
+     */
+
+    public function processImageData(array $images, array $urls) : array
     {
         $result = [];
         $placeholder = [];
