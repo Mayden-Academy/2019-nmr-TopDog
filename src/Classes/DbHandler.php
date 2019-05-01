@@ -32,7 +32,11 @@ class DbHandler
      */
     public function insertBreed (string $breed_name, string $sub_breed) :bool{
         $db = $this->dbConnection->getPDO();
-        $query = $db->prepare("INSERT INTO `breed_table` (`breed_name`, `sub_breed`) VALUES (:breed_name,:sub_breed)");
+        $query = $db->prepare("INSERT INTO `breed_table` (`breed_name`, `sub_breed`) 
+SELECT :breed_name, :sub_breed FROM `breed_table` 
+WHERE NOT EXISTS (SELECT * FROM `breed_table` 
+      WHERE `breed_name`= :breed_name AND `sub_breed`= :sub_breed) 
+LIMIT 1");
         $query->bindParam(':breed_name', $breed_name);
         $query->bindParam(':sub_breed', $sub_breed);
         return $query->execute();
@@ -48,7 +52,11 @@ class DbHandler
      */
     public function insertImages (string $breed_id, string $url_image) :bool{
         $db = $this->dbConnection->getPDO();
-        $query = $db->prepare("INSERT INTO `image_table` (`breed_id`, `url_image`) VALUES (:breed_id,:url_image)");
+        $query = $db->prepare("INSERT INTO `image_table` (`url_image`, `breed_id`) 
+SELECT :url_image, :breed_id FROM `image_table` 
+WHERE NOT EXISTS (SELECT * FROM `image_table` 
+      WHERE `url_image`= :url_image AND `breed_id`= :breed_id) 
+LIMIT 1");
         $query->bindParam(':breed_id', $breed_id);
         $query->bindParam(':url_image', $url_image);
         return $query->execute();
