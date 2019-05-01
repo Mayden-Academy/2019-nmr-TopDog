@@ -24,6 +24,7 @@ To be used with Vagrant VM.
 * Using terminal, SSH into your Vagrant machine using ```vagrant ssh```
 * ```cd``` to the location of the top dog project using your Vagrant command line
 * inside the top dog folder, navigate to ```src/scraper```
+* run the scraper using ```php run.php```
  
 
 ##Contributing
