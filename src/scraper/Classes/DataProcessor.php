@@ -24,7 +24,7 @@ class DataProcessor
      * @return array $result Array that is put into database
      */
 
-    public function processBreedData() : array
+    public function processBreedData(): array
     {
         $result = [];
         $placeholder = [];
@@ -58,9 +58,9 @@ class DataProcessor
      * @return bool Result of if statement
      */
 
-    public function successApiRequest(array $breed) : bool
+    public function successApiRequest(array $breed): bool
     {
-        if ($breed["status"] === "success"){
+        if ($breed["status"] === "success") {
             return true;
         } else {
             return false;
@@ -75,7 +75,7 @@ class DataProcessor
      * @return array $result Array with ids and url for request
      */
 
-    public function createImageUrlWithId(array $breeds) : array
+    public function createImageUrlWithId(array $breeds): array
     {
         $result = [];
         $placeholder = [];
@@ -84,9 +84,9 @@ class DataProcessor
             $main = $breed['breed_name'];
             if (strlen($breed['sub_breed']) > 0) {
                 $sub = $breed['sub_breed'];
-                $placeholder['urlRequest'] = 'https=>//dog.ceo/api/breed/'.$main.'-'.$sub.'/images';
+                $placeholder['urlRequest'] = 'https://dog.ceo/api/breed/' . $main . '-' . $sub . '/images';
             } else {
-                $placeholder['urlRequest'] = 'https=>//dog.ceo/api/breed/'.$main.'/images';
+                $placeholder['urlRequest'] = 'https://dog.ceo/api/breed/' . $main . '/images';
             }
             array_push($result, $placeholder);
         }
@@ -101,7 +101,7 @@ class DataProcessor
      * @return array The reorganised array that will be put into the database
      */
 
-    public function processImageData(array $urls) : array
+    public function processImageData(array $urls): array
     {
         $result = [];
         foreach ($urls as $url) {
