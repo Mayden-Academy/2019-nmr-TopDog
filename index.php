@@ -1,10 +1,11 @@
 <?php
-
+require_once __DIR__ . '/vendor/autoload.php';
 ?>
 
 <html lang="en">
 <head>
     <title>Top Dog</title>
+    <link href="styles/styles.css" rel="stylesheet">
 </head>
 <body>
 
