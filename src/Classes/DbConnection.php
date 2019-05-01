@@ -1,4 +1,5 @@
 <?php
+namespace TopDog\Classes;
 
 class DbConnection {
     private $db;
