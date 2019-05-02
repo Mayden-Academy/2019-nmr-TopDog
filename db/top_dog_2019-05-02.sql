@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.43)
 # Database: top_dog
-# Generation Time: 2019-04-30 12:58:04 +0000
+# Generation Time: 2019-05-02 13:21:59 +0000
 # ************************************************************
 
 
@@ -29,6 +29,7 @@ CREATE TABLE `breed_table` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `breed_name` varchar(200) NOT NULL DEFAULT '',
   `sub_breed` varchar(200) DEFAULT NULL,
+  `fav_dog` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
