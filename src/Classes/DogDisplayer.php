@@ -13,7 +13,7 @@ class DogDisplayer
             if ($dog->getIsFav()) {
                 $favDiv = '<div class="best-dog"><div class="dog-image">' . $img . '</div><h3>The Best Doggo!</h3></div>';
             } else {
-                $dogDiv .= '<div class="dog-holder"><form action="post"><div class="dog-image">' . $img . '</div>' . $dogId . '<input type="submit" value="Make favourite!"></form></div>';
+                $dogDiv .= '<div class="dog-holder"><form method="post"><div class="dog-image">' . $img . '</div>' . $dogId . '<input type="submit" value="Make favourite!"></form></div>';
             }
         }
         return ['faveDog'=>$favDiv, 'dogs'=>$dogDiv];
