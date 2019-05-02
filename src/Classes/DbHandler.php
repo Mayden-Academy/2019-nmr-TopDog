@@ -2,15 +2,8 @@
 
 namespace TopDog\Classes;
 
-/**
- * Class DbHandler handles inputting breeds into db, inserting images into the db based on the breed, and retrieving the breed name, sub breed
- * and id when required.
- */
 class DbHandler
 {
-    /**
-     * @var
-     */
     private $dbConnection;
 
     /**
@@ -18,7 +11,7 @@ class DbHandler
      *
      * @param $db DbConnection object
      */
-    public function __construct(DbConnection $db) {
+    public function __construct(PDOConnection $db) {
         $this->dbConnection = $db;
     }
 
@@ -28,8 +21,8 @@ class DbHandler
      * @return int returns the number of rows of data in the database
      */
     public function checkBreedTableIsEmpty() {
-        $db = $this->dbConnection->getPDO();
-        $query = $db->prepare("SELECT `id` FROM `breed_table`");
+        $db = $this->dbConnection->getConnection();
+        $query = $db->prepare("SELECT * FROM `breed_table`");
         $query->execute();
         $query->rowCount();
     }
@@ -40,14 +33,14 @@ class DbHandler
      * @return int returns the number of rows of data in the database
      */
     public function checkImageTableIsEmpty() {
-        $db = $this->dbConnection->getPDO();
-        $query = $db->prepare("SELECT `id` FROM `image_table`");
+        $db = $this->dbConnection->getConnection();
+        $query = $db->prepare("SELECT * FROM `image_table`");
         $query->execute();
         $query->rowCount();
     }
 
     /**
-     * inserts the breed and sub breed into the database using different MySQL statements depending on whether the database has content already
+     * inserts the breed and sub breed into the database using different MySQL statements depending on whether the database already contains the content
      *
      * @param $breed_name string name of dog breed category
      * @param $sub_breed string name of sub dog breed category if available
@@ -56,7 +49,7 @@ class DbHandler
      */
     public function insertBreed (string $breed_name, string $sub_breed) :bool{
         $rowCount = $this->checkBreedTableIsEmpty();
-        $db = $this->dbConnection->getPDO();
+        $db = $this->dbConnection->getConnection();
         if ($rowCount ==0) {
             $query = $db->prepare("INSERT INTO `breed_table` (`breed_name`, `sub_breed`) VALUES (:breed_name, :sub_breed)");
             $query->bindParam(':breed_name', $breed_name);
@@ -84,7 +77,7 @@ class DbHandler
      */
     public function insertImages (string $breed_id, string $url_image) :bool{
         $rowCount = $this->checkImageTableIsEmpty();
-        $db = $this->dbConnection->getPDO();
+        $db = $this->dbConnection->getConnection();
         if ($rowCount ==0) {
             $query = $db->prepare("INSERT INTO `image_table` (`url_image`, `breed_id`) VALUES (:url_image, :breed_id)");
             $query->bindParam(':breed_id', $breed_id);
@@ -108,7 +101,7 @@ class DbHandler
      * @return array containing the the id, breed_name and sub_breed
      */
     public function getBreed () :array{
-        $db = $this->dbConnection->getPDO();
+        $db = $this->dbConnection->getConnection();
         $query= $db->prepare("SELECT `id`, `breed_name`, `sub_breed` FROM `breed_table`");
         $query->execute();
         return $query->fetchAll(\PDO::FETCH_ASSOC);
