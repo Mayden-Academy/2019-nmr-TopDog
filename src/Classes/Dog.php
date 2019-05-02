@@ -7,6 +7,7 @@ class Dog
 	private $id;
 	private $breed_id;
 	private $url_image;
+	private $is_fav;
 
 	/**
 	 * This method gets the id of a dog
@@ -36,11 +37,20 @@ class Dog
 	}
 
 	/**
+	 * This method gets the is fav property of a dog
+	 *
+	 * @return bool which represents a private is_fav
+	 */
+	public function getIsFav(): bool {
+		return $this->is_fav;
+	}
+
+	/**
 	 * * This method gets all the information relating to a dog
 	 *
 	 * @return array containing all the information relating to a dog
 	 */
 	public function getInfo() : array {
-		return ['id'=> $this->id,'breedId'=>$this->breed_id, 'url'=> $this->url_image];
+		return ['id'=> $this->id,'breedId'=>$this->breed_id, 'url'=> $this->url_image, 'is_fav'=> $this->is_fav];
 	}
 }
