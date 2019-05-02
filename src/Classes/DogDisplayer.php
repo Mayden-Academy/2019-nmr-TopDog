@@ -1,7 +1,6 @@
 <?php
 namespace TopDog\Classes;
 
-
 class DogDisplayer
 {
     public function displayDogs(array $dogs) {
