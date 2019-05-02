@@ -36,17 +36,17 @@ class DataProcessor
                         if ($key === 'cattledog') {
                             $placeholder['breed_name'] = $key;
                             $placeholder['sub_breed'] = '';
-                            array_push($result, $placeholder);
+                            [$result, $placeholder];
                         } else {
                             $placeholder['breed_name'] = $key;
                             $placeholder['sub_breed'] = $subBreed;
-                            array_push($result, $placeholder);
+                            [$result, $placeholder];
                         }
                     }
                 } else {
                     $placeholder['breed_name'] = $key;
                     $placeholder['sub_breed'] = '';
-                    array_push($result, $placeholder);
+                    [$result, $placeholder];
                 }
             }
         }
@@ -90,7 +90,7 @@ class DataProcessor
                 } else {
                     $placeholder['urlRequest'] = 'https://dog.ceo/api/breed/' . $main . '/images';
                 }
-                array_push($result, $placeholder);
+                [$result, $placeholder];
             }
         }
         return $result;
@@ -116,9 +116,9 @@ class DataProcessor
                 $placeholder['id'] = $url['id'];
                 $placeholder['urlImage'] = [];
                 foreach ($images['message'] as $value) {
-                    array_push($placeholder['urlImage'], $value);
+                    [$placeholder['urlImage'], $value];
                 }
-                array_push($result, $placeholder);
+                [$result, $placeholder];
             }
         }
         return $result;
