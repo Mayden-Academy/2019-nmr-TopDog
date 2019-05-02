@@ -20,7 +20,7 @@ class DbHandler
     /**
      * Deletes all the data in the breed table in the top_dog DB
      */
-    public function truncateBreedTable() {
+    public function truncateBreedTable :void() {
         $db = $this->dbConnection->getConnection();
         $query = $db->prepare("TRUNCATE TABLE `breed_table`");
         $query->execute();
@@ -29,7 +29,7 @@ class DbHandler
     /**
      * Deletes all the data in the image table in the top_dog DB
      */
-    public function truncateImageTable() {
+    public function truncateImageTable :void() {
         $db = $this->dbConnection->getConnection();
         $query = $db->prepare("TRUNCATE TABLE `image_table`");
         $query->execute();
