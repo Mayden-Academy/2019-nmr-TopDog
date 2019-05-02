@@ -78,4 +78,20 @@ class DbHandler
         $query->execute();
         return $query->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    /**
+     * Gets all the dog's images and populate the info from the database into an object
+     *
+     * @param $id string Id of the choosen breed
+     *
+     * @return array Array of objects with every dog's image information
+     */
+    public function getDogs(string $id) : array
+    {
+        $db = $this->dbConnection->getConnection();
+        $query= $db->prepare("SELECT `id`, `url_image`, `breed_id` FROM `image_table` WHERE `breed_id`=:breed_id");
+        $query->bindParam(':breed_id', $id);
+        $query->execute();
+        return $query->fetchAll(\PDO::FETCH_CLASS, 'TopDog\Classes\Dog');
+    }
 }
