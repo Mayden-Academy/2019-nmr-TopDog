@@ -31,7 +31,7 @@ class DbHandler
         $db = $this->dbConnection->getConnection();
         $query = $db->prepare("SELECT * FROM `breed_table`");
         $query->execute();
-        return $query->rowCount();
+        $query->rowCount();
     }
 
     /**
@@ -43,7 +43,7 @@ class DbHandler
         $db = $this->dbConnection->getConnection();
         $query = $db->prepare("SELECT * FROM `image_table`");
         $query->execute();
-        return $query->rowCount();
+        $query->rowCount();
     }
 
     /**
