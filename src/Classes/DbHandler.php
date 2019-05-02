@@ -119,8 +119,8 @@ class DbHandler
     public function getDogs(string $id) : array
     {
         $db = $this->dbConnection->getConnection();
-        $query= $db->prepare("SELECT `id`, `url_image`, `breed_id` FROM `image_table` WHERE `id`=:id");
-        $query->bindParam(':id', $id);
+        $query= $db->prepare("SELECT `id`, `url_image`, `breed_id` FROM `image_table` WHERE `breed_id`=:breed_id");
+        $query->bindParam(':breed_id', $id);
         $query->execute();
         return $query->fetchAll(\PDO::FETCH_CLASS, 'Dog');
     }
