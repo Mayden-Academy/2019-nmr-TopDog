@@ -46,9 +46,7 @@ class Dog
 	}
 
 	/**
-	 * This method gets the is fav property of a dog
-	 *
-	 * @return bool which represents a private is_fav
+	 * This method sets the is fav property of a dog
 	 */
 	public function setIsFav(): void {
 		$this->is_fav = true;
