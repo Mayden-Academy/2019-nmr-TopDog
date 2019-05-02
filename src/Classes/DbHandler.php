@@ -18,27 +18,21 @@ class DbHandler
     }
 
     /**
-     * checks whether the database contains any data
-     *
-     * @return int returns the number of rows of data in the database
+     * Deletes all the data in the breed table in the top_dog DB
      */
-    public function checkBreedTableIsEmpty() {
+    public function truncateBreedTable() :void {
         $db = $this->dbConnection->getConnection();
-        $query = $db->prepare("SELECT * FROM `breed_table`");
+        $query = $db->prepare("TRUNCATE TABLE `breed_table`");
         $query->execute();
-        return $query->rowCount();
     }
 
     /**
-     * checks whether the database contains any data
-     *
-     * @return int returns the number of rows of data in the database
+     * Deletes all the data in the image table in the top_dog DB
      */
-    public function checkImageTableIsEmpty() {
+    public function truncateImageTable() :void {
         $db = $this->dbConnection->getConnection();
-        $query = $db->prepare("SELECT * FROM `image_table`");
+        $query = $db->prepare("TRUNCATE TABLE `image_table`");
         $query->execute();
-        return $query->rowCount();
     }
 
     /**
@@ -50,23 +44,11 @@ class DbHandler
      * @return boolean dependent on if insertion is successful
      */
     public function insertBreed (string $breed_name, string $sub_breed) :bool{
-        $rowCount = $this->checkBreedTableIsEmpty();
         $db = $this->dbConnection->getConnection();
-        if ($rowCount ==0) {
-            $query = $db->prepare("INSERT INTO `breed_table` (`breed_name`, `sub_breed`) VALUES (:breed_name, :sub_breed)");
-            $query->bindParam(':breed_name', $breed_name);
-            $query->bindParam(':sub_breed', $sub_breed);
-            return $query->execute();
-        } else {
-            $query = $db->prepare("INSERT INTO `breed_table` (`breed_name`, `sub_breed`) 
-                SELECT :breed_name, :sub_breed FROM `breed_table` 
-                WHERE NOT EXISTS (SELECT * FROM `breed_table` 
-                WHERE `breed_name`= :breed_name AND `sub_breed`= :sub_breed) 
-                LIMIT 1");
-            $query->bindParam(':breed_name', $breed_name);
-            $query->bindParam(':sub_breed', $sub_breed);
-            return $query->execute();
-        }
+        $query = $db->prepare("INSERT INTO `breed_table` (`breed_name`, `sub_breed`) VALUES (:breed_name, :sub_breed)");
+        $query->bindParam(':breed_name', $breed_name);
+        $query->bindParam(':sub_breed', $sub_breed);
+        return $query->execute();
     }
 
     /**
@@ -78,23 +60,11 @@ class DbHandler
      * @return boolean dependent on if insertion is successful
      */
     public function insertImages (string $breed_id, string $url_image) :bool{
-        $rowCount = $this->checkImageTableIsEmpty();
         $db = $this->dbConnection->getConnection();
-        if ($rowCount ==0) {
-            $query = $db->prepare("INSERT INTO `image_table` (`url_image`, `breed_id`) VALUES (:url_image, :breed_id)");
-            $query->bindParam(':breed_id', $breed_id);
-            $query->bindParam(':url_image', $url_image);
-            return $query->execute();
-        } else {
-            $query = $db->prepare("INSERT INTO `image_table` (`url_image`, `breed_id`) 
-                SELECT :url_image, :breed_id FROM `image_table` 
-                WHERE NOT EXISTS (SELECT * FROM `image_table` 
-                WHERE `url_image`= :url_image AND `breed_id`= :breed_id) 
-                LIMIT 1");
-            $query->bindParam(':breed_id', $breed_id);
-            $query->bindParam(':url_image', $url_image);
-            return $query->execute();
-        }
+        $query = $db->prepare("INSERT INTO `image_table` (`url_image`, `breed_id`) VALUES (:url_image, :breed_id)");
+        $query->bindParam(':breed_id', $breed_id);
+        $query->bindParam(':url_image', $url_image);
+        return $query->execute();
     }
 
     /**
