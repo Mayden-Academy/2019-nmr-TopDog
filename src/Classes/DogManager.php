@@ -69,4 +69,8 @@ class DogManager
 	public function getFaveId(){
         $this->faveId = $this->formHandler->getFavId();
     }
+
+    public function faveToDb(){
+        $this->dbHandler->setFav($this->selectId, $this->faveId);
+    }
 }
