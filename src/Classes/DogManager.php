@@ -10,6 +10,7 @@ class DogManager
 	private $formHandler;
 	private $selectId;
 	private $dogDisplayer;
+	private $faveId;
 
     /**
      * DogManager constructor.
@@ -64,4 +65,8 @@ class DogManager
     public function displayDogs(){
 		return $this->dogDisplayer->displayDogs($this->dogs);
 	}
+
+	public function getFaveId(){
+        $this->faveId = $this->formHandler->getFavId();
+    }
 }
