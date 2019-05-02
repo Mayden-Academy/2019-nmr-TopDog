@@ -89,9 +89,26 @@ class DbHandler
     public function getDogs(string $id) : array
     {
         $db = $this->dbConnection->getConnection();
-        $query= $db->prepare("SELECT `id`, `url_image`, `breed_id` FROM `image_table` WHERE `breed_id`=:breed_id");
+        $query= $db->prepare("SELECT `id`, `url_image`, `breed_id`, `fav_dog` FROM `image_table` WHERE `breed_id`=:breed_id");
         $query->bindParam(':breed_id', $id);
         $query->execute();
         return $query->fetchAll(\PDO::FETCH_CLASS, 'TopDog\Classes\Dog');
+    }
+
+    /**
+     * This function updates the fav_dog column of the selected breed to the selected image id
+     *
+     * @param string $image_id is the ID of the chosen dog image
+     *
+     * @param string $breed_id is the ID of the chosen breed
+     *
+     * @return bool dependent on if update is successful
+     */
+    public function setFav(string $image_id, string $breed_id) :bool{
+        $db = $this->dbConnection->getConnection();
+        $query= $db->prepare("UPDATE `breed_table` SET `fav_dog` = :image_id WHERE `id` = :breed_id");
+        $query->bindParam(':image_id', $image_id);
+        $query->bindParam(':image_id', $breed_id);
+        return $query->execute();
     }
 }
