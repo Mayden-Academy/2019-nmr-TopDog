@@ -18,6 +18,7 @@ class FormHandler
     public function __construct($postData)
     {
         $this->selectIdData = $postData;
+        $this->favId = $postData;
     }
 
     /**
