@@ -1,7 +1,6 @@
 <?php
 
 namespace TopDog\Classes;
-require_once '../../vendor/autoload.php';
 
 /**
  * Class DbHandler handles inputting breeds into db, inserting images into the db based on the breed, and retrieving the breed name, sub breed
