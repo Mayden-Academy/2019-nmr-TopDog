@@ -27,6 +27,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 <main class="dogHouse">
     <?php
+    echo $dogDiv
     ?>
 </main>
 
