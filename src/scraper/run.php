@@ -10,12 +10,12 @@ $arrayBreeds = $dataProcessor->processBreedData();
 foreach ($arrayBreeds as $breed) {
     $dbHandler->insertBreed($breed['breed_name'], $breed['sub_breed']);
 }
-$breeds = $dbHandler->getBreed();
-$urlRequests = $dataProcessor->createImageUrlWithId($breeds);
-$arrayImages = $dataProcessor->processImageData($urlRequests);
-foreach ($arrayImages as $images) {
-    foreach ($images['urlImage'] as $url) {
-        $dbHandler->insertImages($images['id'], $url);
-    }
-}
+//$breeds = $dbHandler->getBreed();
+//$urlRequests = $dataProcessor->createImageUrlWithId($breeds);
+//$arrayImages = $dataProcessor->processImageData($urlRequests);
+//foreach ($arrayImages as $images) {
+//    foreach ($images['urlImage'] as $url) {
+//        $dbHandler->insertImages($images['id'], $url);
+//    }
+//}
 

@@ -29,9 +29,9 @@ class DbHandler
      */
     public function checkBreedTableIsEmpty() {
         $db = $this->dbConnection->getPDO();
-        $query = $db->prepare("SELECT * FROM `breed_table`");
+        $query = $db->prepare("SELECT `id` FROM `breed_table`");
         $query->execute();
-        return $query->rowCount();
+        $query->rowCount();
     }
 
     /**
@@ -41,9 +41,9 @@ class DbHandler
      */
     public function checkImageTableIsEmpty() {
         $db = $this->dbConnection->getPDO();
-        $query = $db->prepare("SELECT * FROM `image_table`");
+        $query = $db->prepare("SELECT `id` FROM `image_table`");
         $query->execute();
-        return $query->rowCount();
+        $query->rowCount();
     }
 
     /**
