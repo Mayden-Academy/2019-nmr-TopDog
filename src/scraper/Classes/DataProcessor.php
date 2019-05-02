@@ -22,6 +22,11 @@ class DataProcessor
     }
 
 
+    /**
+     * This public method is called to kick off the api scrape, it calls and managers other con
+     *
+     * @return void - not return, adds data scraped from API to prepared database
+     */
     public function scrapeDogApi() {
         $arrayBreeds = $this->processBreedData();
         foreach ($arrayBreeds as $breed) {
