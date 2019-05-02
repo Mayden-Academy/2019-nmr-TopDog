@@ -20,7 +20,7 @@ class DropdownMaker
                     if ($breed['sub_breed'] === '') {
                         $dropDownList .= "<option value=" . $breed['id'] . ">" . $breed['breed_name'] . "</option>";
                     } else {
-                        $dropDownList .= "<option value=" . $breed['id'] . ">" . $breed['sub_breed'] . "-" . $breed['breed_name'] . "</option>";
+                        $dropDownList .= "<option value=" . $breed['id'] . ">" . $breed['sub_breed'] . " " . $breed['breed_name'] . "</option>";
                     }
                 }
             }
