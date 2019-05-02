@@ -6,11 +6,11 @@ class FormHandler
 {
     private $formValue;
 
-    public function assignFormValue() {
+    public function assignSelectValue() {
         $this->formValue = $_POST['Breeds'];
     }
 
-    public function getFormIdValue(){
+    public function getSelectIdValue(){
         return $this->formValue;
     }
 }
