@@ -40,7 +40,7 @@ class DbHandler
     }
 
     /**
-     * inserts the breed and sub breed into the database using different MySQL statements depending on whether the database has content already
+     * inserts the breed and sub breed into the database using different MySQL statements depending on whether the database already contains the content
      *
      * @param $breed_name string name of dog breed category
      * @param $sub_breed string name of sub dog breed category if available
