@@ -1,7 +1,7 @@
 <?php
 require_once '../../vendor/autoload.php';
 
-$dbConnection = new TopDog\Classes\DbConnection();
+$dbConnection = new TopDog\Classes\PDOConnection();
 $ch = new TopDog\scraper\Classes\CurlHandler();
 $request = new TopDog\scraper\Classes\APIGrabber($ch);
 $dataProcessor = new TopDog\scraper\Classes\DataProcessor($request);
