@@ -2,18 +2,39 @@
 
 namespace TopDog\scraper\Classes;
 
+use TopDog\Classes\DbHandler;
+
 class DataProcessor
 {
-    public $APIGrabber;
+    private $APIGrabber;
+    private $dbHandler;
 
     /**
      * DataProcessor constructor.
      *
      * @param APIGrabber $APIGrabber API Request from Class APIGrabber
+     * @param DbHandler $dbHandler
      */
-    public function __construct(APIGrabber $APIGrabber)
+    public function __construct(APIGrabber $APIGrabber, DbHandler $dbHandler)
     {
         $this->APIGrabber = $APIGrabber;
+        $this->dbHandler = $dbHandler;
+    }
+
+
+    public function scrapeDogApi() {
+        $arrayBreeds = $this->processBreedData();
+        foreach ($arrayBreeds as $breed) {
+            $this->dbHandler->insertBreed($breed['breed_name'], $breed['sub_breed']);
+        }
+        $breeds = $this->dbHandler->getBreed();
+        $urlRequests = $this->createImageUrlWithId($breeds);
+        $arrayImages = $this->processImageData($urlRequests);
+        foreach ($arrayImages as $images) {
+            foreach ($images['urlImage'] as $url) {
+                $this->dbHandler->insertImages($images['id'], $url);
+            }
+        }
     }
 
     /**
@@ -21,7 +42,7 @@ class DataProcessor
      *
      * @return array $result Array that is put into database
      */
-    public function processBreedData(): array
+    private function processBreedData(): array
     {
         $result = [];
         $placeholder = [];
@@ -76,7 +97,7 @@ class DataProcessor
      *
      * @return array $result Array with ids of breed and url for API request to store images
      */
-    public function createImageUrlWithId(array $breeds): array
+    private function createImageUrlWithId(array $breeds): array
     {
         $result = [];
         $placeholder = [];
@@ -103,7 +124,7 @@ class DataProcessor
      *
      * @return array The reorganised array that will be put into the database
      */
-    public function processImageData(array $urls): array
+    private function processImageData(array $urls): array
     {
         $result = [];
         foreach ($urls as $url) {
