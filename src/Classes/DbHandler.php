@@ -17,12 +17,18 @@ class DbHandler
         $this->dbConnection = $db;
     }
 
+    /**
+     * Deletes all the data in the breed table in the top_dog DB
+     */
     public function truncateBreedTable() {
         $db = $this->dbConnection->getConnection();
         $query = $db->prepare("TRUNCATE TABLE `breed_table`");
         $query->execute();
     }
 
+    /**
+     * Deletes all the data in the image table in the top_dog DB
+     */
     public function truncateImageTable() {
         $db = $this->dbConnection->getConnection();
         $query = $db->prepare("TRUNCATE TABLE `image_table`");
