@@ -13,7 +13,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 <h1>Top Dog</h1>
 
-<form>
+<form method="POST">
     <select name="Breeds" title="Breeds">
         <option>Choose your breed!</option>
         <?php
@@ -27,6 +27,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 <main class="dog-house">
     <?php
+
         if (isset($dogContent)) {
             echo $dogContent;
         };
