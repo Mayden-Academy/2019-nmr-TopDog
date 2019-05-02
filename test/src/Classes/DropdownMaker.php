@@ -17,7 +17,7 @@
             $dropDownMaker = new TopDog\Classes\DropdownMaker();
             $test = [['id'=>1,'breed_name'=>'hound','sub_breed'=>'blood']];
             $result = $dropDownMaker->populateDropdown($test);
-            $this->assertEquals('<option value=1>blood-hound</option>', $result);
+            $this->assertEquals('<option value=1>blood hound</option>', $result);
         }
 
         public function testPopulateDropdownSuccessWithoutSubBreed()

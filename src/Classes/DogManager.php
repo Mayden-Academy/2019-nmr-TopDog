@@ -1,7 +1,6 @@
 <?php
 namespace TopDog\Classes;
 
-
 class DogManager
 {
 	private $dbHandler;
