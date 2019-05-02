@@ -28,6 +28,8 @@ class DataProcessor
      * @return void - not return, adds data scraped from API to prepared database
      */
     public function scrapeDogApi() {
+        $this->dbHandler->truncateBreedTable();
+        $this->dbHandler->truncateImageTable();
         $arrayBreeds = $this->processBreedData();
         foreach ($arrayBreeds as $breed) {
             $this->dbHandler->insertBreed($breed['breed_name'], $breed['sub_breed']);
