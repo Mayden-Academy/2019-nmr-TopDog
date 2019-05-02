@@ -13,7 +13,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 <h1>Top Dog</h1>
 
-<form method="post">
+<form method="POST">
     <select name="Breeds" title="Breeds">
         <option>Choose your breed!</option>
         <?php
