@@ -67,6 +67,7 @@ class DogManager
 	}
 
 	public function getFaveId(){
+        $this->formHandler->assignFavId();
         $this->faveId = $this->formHandler->getFavId();
     }
 

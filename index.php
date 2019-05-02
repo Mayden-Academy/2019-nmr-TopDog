@@ -15,6 +15,14 @@ if(isset($_POST["Breeds"])) {
     $dogImagesOutput = $dogManager->displayDogs();
 }
 
+if(isset($_POST["fav_id"])) {
+    $dogManager->getFaveId();
+    $dogManager->faveToDb();
+    $dogManager->formGetId();
+    $dogManager->populateDogs();
+    $dogImagesOutput = $dogManager->displayDogs();
+}
+
 $dogManager->getBreeds();
 $dropdownOutput = $dogManager->makeDropdown();
 
