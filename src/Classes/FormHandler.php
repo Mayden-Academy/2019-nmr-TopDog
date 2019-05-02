@@ -10,7 +10,7 @@ class FormHandler
         $this->formValue = $_POST['Breeds'];
     }
 
-    public function getFormValue(){
+    public function getFormIdValue(){
         return $this->formValue;
     }
 }
