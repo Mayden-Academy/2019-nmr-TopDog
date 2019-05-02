@@ -8,5 +8,4 @@ $ch = new TopDog\scraper\Classes\CurlHandler();
 $apiGrab = new TopDog\scraper\Classes\APIGrabber($ch);
 
 $dataProcessor = new TopDog\scraper\Classes\DataProcessor($apiGrab, $dbHandler);
-
 $dataProcessor->scrapeDogApi();

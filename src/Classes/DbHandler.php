@@ -2,6 +2,8 @@
 
 namespace TopDog\Classes;
 
+use TopDog\Interfaces\DbConnection;
+
 class DbHandler
 {
     private $dbConnection;
@@ -11,7 +13,7 @@ class DbHandler
      *
      * @param $db DbConnection object
      */
-    public function __construct(PDOConnection $db) {
+    public function __construct(DbConnection $db) {
         $this->dbConnection = $db;
     }
 
@@ -24,7 +26,7 @@ class DbHandler
         $db = $this->dbConnection->getConnection();
         $query = $db->prepare("SELECT * FROM `breed_table`");
         $query->execute();
-        $query->rowCount();
+        return $query->rowCount();
     }
 
     /**
@@ -36,7 +38,7 @@ class DbHandler
         $db = $this->dbConnection->getConnection();
         $query = $db->prepare("SELECT * FROM `image_table`");
         $query->execute();
-        $query->rowCount();
+        return $query->rowCount();
     }
 
     /**
