@@ -89,7 +89,7 @@ class DbHandler
     public function getDogs(string $id) : array
     {
         $db = $this->dbConnection->getConnection();
-        $query= $db->prepare("SELECT `id`, `url_image`, `breed_id`, `fav_dog` FROM `image_table` WHERE `breed_id`=:breed_id");
+        $query= $db->prepare("SELECT `id`, `url_image`, `breed_id` FROM `image_table` WHERE `breed_id`=:breed_id");
         $query->bindParam(':breed_id', $id);
         $query->execute();
         return $query->fetchAll(\PDO::FETCH_CLASS, 'TopDog\Classes\Dog');
@@ -110,5 +110,20 @@ class DbHandler
         $query->bindParam(':image_id', $image_id);
         $query->bindParam(':image_id', $breed_id);
         return $query->execute();
+    }
+
+    /**
+     * Gets the ID number of the favourite image of a certain breed
+     *
+     * @param string $id The id of the breed
+     *
+     * @return string the ID of the favourite image
+     */
+    public function getFavouriteDog (string $id) :string {
+        $db = $this->dbConnection->getConnection();
+        $query= $db->prepare("SELECT `fav_dog` FROM `breed_table` WHERE `id`=:id");
+        $query->bindParam(':id', $id);
+        $query->execute();
+        return $query->fetch(\PDO::FETCH_ASSOC);
     }
 }
