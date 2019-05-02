@@ -12,7 +12,19 @@ class DogManager
 	private $selectId;
 	private $dogDisplayer;
 
-	public function __construct(DbHandler $dbHandler, DropdownMaker $dropdownMaker, FormHandler $formHandler, DogDisplayer $dogDisplayer)
+
+    /**
+     * DogManager constructor.
+     *
+     * @param DbHandler $dbHandler Db Connection from Class DbHandler
+     *
+     * @param DropdownMaker $dropdownMaker
+     *
+     * @param FormHandler $formHandler
+     *
+     * @param DogDisplayer $dogDisplayer
+     */
+    public function __construct(DbHandler $dbHandler, DropdownMaker $dropdownMaker, FormHandler $formHandler, DogDisplayer $dogDisplayer)
 	{
 		$this->dbHandler = $dbHandler;
 		$this->dropdownMaker = $dropdownMaker;
@@ -21,23 +33,42 @@ class DogManager
 
 	}
 
-	public function getDogs() {
+    /**
+     * Sets $dogs to getDogs method from DbHandler Class
+     */
+    public function getDogs() {
 		$this->dogs = $this->dbHandler-$this->getDogs($this->selectId);
 	}
 
-	public function getBreeds() {
+
+    /**
+     * Sets $breeds to getBreed method from DbHandler Class
+     */
+    public function getBreeds() {
 		$this->breeds = $this->dbHandler->getBreed();
 	}
 
-	public function makeDropdown() {
+
+    /**
+     * Sets $dropdownMaker to populateDropdown from DropdownMaker Class
+     */
+    public function makeDropdown() {
 		$this->dropdownMaker->populateDropdown($this->breeds);
 	}
 
-	public function formGetId () {
+
+    /**
+     * Sets $selectId to getSelectidValue method from FormHandler Class
+     */
+    public function formGetId () {
 		$this->selectId = $this->formHandler->getSelectIdValue();
 	}
 
-	public function displayDogs(){
+
+    /**
+     * Sets $dogDisplayer to displayDogs method from DogDisplayer Class
+     */
+    public function displayDogs(){
 		$this->dogDisplayer->displayDogs($this->dogs);
 	}
 }
