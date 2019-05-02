@@ -6,9 +6,11 @@ An app to scrape data from the https://dog.ceo/dog-api/ Dog Pictures API and add
 
 Designed to be used with the NMR Top-dog App.
 
-##Compatibility
+##Compatibility and dependencies
 
 To be used with Vagrant VM.
+
+Requires Autoloading from Composer Dependency Manager for PHP https://getcomposer.org/ 
 
 ##Installation
 
