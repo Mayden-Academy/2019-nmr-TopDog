@@ -1,6 +1,21 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
+$db = new \TopDog\Classes\PDOConnection();
+$dbHandler = new \TopDog\Classes\DbHandler($db);
+$dropdownMaker = new \TopDog\Classes\DropdownMaker();
+$formHandler = new \TopDog\Classes\FormHandler();
+$dogDisplayer = new \TopDog\Classes\DogDisplayer();
+$dogManager = new \TopDog\Classes\DogManager($dbHandler, $dropdownMaker, $formHandler, $dogDisplayer);
+if(isset($_POST["Breeds"])) {
+    $dogManager->formGetId();
+    $dogManager->populateDogs();
+    $dogImagesOutput = $dogManager->displayDogs();
+}
+
+$dogManager->getBreeds();
+$dropdownOutput = $dogManager->makeDropdown();
+
 ?>
 
 <html lang="en">
@@ -17,9 +32,9 @@ require_once __DIR__ . '/vendor/autoload.php';
     <select name="Breeds" title="Breeds">
         <option>Choose your breed!</option>
         <?php
-            if (isset($dropDown)) {
-                echo $dropDown;
-            };
+        if (isset($dropdownOutput)) {
+            echo $dropdownOutput;
+        }
         ?>
     </select>
     <input type="submit">
@@ -27,10 +42,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 <main class="dog-house">
     <?php
-
-        if (isset($dogContent)) {
-            echo $dogContent;
-        };
+        if(isset($dogImagesOutput)) {
+            echo $dogImagesOutput;
+        }
     ?>
 </main>
 
