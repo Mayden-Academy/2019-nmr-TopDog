@@ -2,15 +2,8 @@
 
 namespace TopDog\Classes;
 
-/**
- * Class DbHandler handles inputting breeds into db, inserting images into the db based on the breed, and retrieving the breed name, sub breed
- * and id when required.
- */
 class DbHandler
 {
-    /**
-     * @var
-     */
     private $dbConnection;
 
     /**
