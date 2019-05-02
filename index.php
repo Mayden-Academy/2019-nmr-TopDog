@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
+
 ?>
 
 <html lang="en">
@@ -13,63 +14,23 @@ require_once __DIR__ . '/vendor/autoload.php';
 <h1>Top Dog</h1>
 
 <form>
-    <select class="breedDropdown" name="Breeds" title="Breeds">
+    <select name="Breeds" title="Breeds">
         <option>Choose your breed!</option>
         <?php
+            if (isset($dropDown)) {
+                echo $dropDown;
+            };
         ?>
     </select>
     <input type="submit">
 </form>
 
-<div class="favouriteDogContainer">
-<!--    GET RID OF THIS BEFORE MERGING-->
-    <div class='best-dog'>
-        <div class='dog-image'>
-            <img src='../../ashby.jpg' alt='doggy'>
-        </div>
-        <h3>The Best Doggo!</h3>
-    </div>
-
+<main class="dog-house">
     <?php
+        if (isset($dogContent)) {
+            echo $dogContent;
+        };
     ?>
-</div>
-
-<main class="dogHouse">
-    <?php
-    ?>
-
-    <div class='dog-holder'>
-        <form action='post'>
-            <div class='dog-image'>
-                <img src='../../ashby.jpg' alt='doggy'>
-            </div>
-            <input type='submit' value='Make favourite!'>
-        </form>
-    </div>
-    <div class='dog-holder'>
-        <form action='post'>
-            <div class='dog-image'>
-                <img src='../../ashby.jpg' alt='doggy'>
-            </div>
-            <input type='submit' value='Make favourite!'>
-        </form>
-    </div>
-    <div class='dog-holder'>
-        <form action='post'>
-            <div class='dog-image'>
-                <img src='../../ashby.jpg' alt='doggy'>
-            </div>
-            <input type='submit' value='Make favourite!'>
-        </form>
-    </div>
-    <div class='dog-holder'>
-        <form action='post'>
-            <div class='dog-image'>
-                <img src='../../ashby.jpg' alt='doggy'>
-            </div>
-            <input type='submit' value='Make favourite!'>
-        </form>
-    </div>
 </main>
 
 </body>
