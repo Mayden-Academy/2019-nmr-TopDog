@@ -2,7 +2,6 @@
 
 namespace TopDog\Classes;
 
-
 class Dog
 {
 	private $id;
