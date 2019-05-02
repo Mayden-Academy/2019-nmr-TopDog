@@ -3,6 +3,12 @@ namespace TopDog\Classes;
 
 class DropdownMaker
 {
+    /** This method takes in an array that contains an array of dogs and convert it into an HTML string that will populate the dog breed dropdown
+     *
+     * @param array $breeds is an array containing arrays of dogs
+     *
+     * @return string that will populate the dropdown of dog breeds
+     */
     public function populateDropdown (array $breeds) : string
     {
         $dropDownList = '';
