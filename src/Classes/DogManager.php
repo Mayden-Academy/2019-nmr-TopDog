@@ -11,7 +11,6 @@ class DogManager
 	private $selectId;
 	private $dogDisplayer;
 
-
     /**
      * DogManager constructor.
      *
@@ -36,7 +35,6 @@ class DogManager
 		$this->dogs = $this->dbHandler->getDogs($this->selectId);
 	}
 
-
     /**
      * Sets $breeds to the return of the getBreed method
      */
@@ -45,14 +43,12 @@ class DogManager
 
 	}
 
-
     /**
      * Sets $dropdownMaker to the return of the populateDropdown method
      */
     public function makeDropdown() {
 		return $this->dropdownMaker->populateDropdown($this->breeds);
 	}
-
 
     /**
      * Sets $selectId to the return of the getSelectIdValue method
@@ -61,7 +57,6 @@ class DogManager
         $this->formHandler->assignSelectValue();
 		$this->selectId = $this->formHandler->getSelectIdValue();
 	}
-
 
     /**
      * Sets $dogDisplayer to the return of the displayDogs method
