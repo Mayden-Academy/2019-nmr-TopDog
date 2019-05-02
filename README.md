@@ -21,7 +21,7 @@ Requires Autoloading from Composer Dependency Manager for PHP https://getcompose
   
 ## Usage
 
-*As of April 2019 running this scraper will grab around 20,000 rows of data, and may take up to 2 mins to run*
+*As of April 2019 running this scraper will grab around 20,000 rows of data, and may take up to 10 mins to run*
 
 * Using terminal, SSH into your Vagrant machine using ```vagrant ssh```
 * ```cd``` to the location of the top dog project using your Vagrant command line
