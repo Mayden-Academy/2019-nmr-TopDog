@@ -1,5 +1,5 @@
 <?php
-namespace TopDog\scraper\Classes;
+namespace TopDog\Scraper\Classes;
 
 class APIGrabber
 {
