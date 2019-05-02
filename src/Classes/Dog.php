@@ -7,7 +7,7 @@ class Dog
 	private $id;
 	private $breed_id;
 	private $url_image;
-	private $is_fav;
+	private $is_fav = false;
 
 	/**
 	 * This method gets the id of a dog
