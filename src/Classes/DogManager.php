@@ -17,12 +17,9 @@ class DogManager
      * DogManager constructor.
      *
      * @param DbHandler $dbHandler Db Connection from Class DbHandler
-     *
-     * @param DropdownMaker $dropdownMaker
-     *
-     * @param FormHandler $formHandler
-     *
-     * @param DogDisplayer $dogDisplayer
+     * @param DropdownMaker $dropdownMaker Class for creating dropdowns
+     * @param FormHandler $formHandler Class for handling forms
+     * @param DogDisplayer $dogDisplayer Class for displaying dog images
      */
     public function __construct(DbHandler $dbHandler, DropdownMaker $dropdownMaker, FormHandler $formHandler, DogDisplayer $dogDisplayer)
 	{
@@ -34,7 +31,7 @@ class DogManager
 	}
 
     /**
-     * Sets $dogs to getDogs method from DbHandler Class
+     * Sets $dogs to the return of the getDogs method
      */
     public function getDogs() {
 		$this->dogs = $this->dbHandler-$this->getDogs($this->selectId);
@@ -42,7 +39,7 @@ class DogManager
 
 
     /**
-     * Sets $breeds to getBreed method from DbHandler Class
+     * Sets $breeds to the return of the getBreed method
      */
     public function getBreeds() {
 		$this->breeds = $this->dbHandler->getBreed();
@@ -50,7 +47,7 @@ class DogManager
 
 
     /**
-     * Sets $dropdownMaker to populateDropdown from DropdownMaker Class
+     * Sets $dropdownMaker to the return of the populateDropdown method
      */
     public function makeDropdown() {
 		$this->dropdownMaker->populateDropdown($this->breeds);
@@ -58,7 +55,7 @@ class DogManager
 
 
     /**
-     * Sets $selectId to getSelectidValue method from FormHandler Class
+     * Sets $selectId to the return of the getSelectIdValue method
      */
     public function formGetId () {
 		$this->selectId = $this->formHandler->getSelectIdValue();
@@ -66,7 +63,7 @@ class DogManager
 
 
     /**
-     * Sets $dogDisplayer to displayDogs method from DogDisplayer Class
+     * Sets $dogDisplayer to the return of the displayDogs method
      */
     public function displayDogs(){
 		$this->dogDisplayer->displayDogs($this->dogs);
