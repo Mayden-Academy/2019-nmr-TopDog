@@ -27,6 +27,7 @@ require_once __DIR__ . '/vendor/autoload.php';
         <div class='dog-image'>
             <img src='../../ashby.jpg' alt='doggy'>
         </div>
+        <h3>The Best Doggo!</h3>
     </div>
 
     <?php
@@ -38,16 +39,36 @@ require_once __DIR__ . '/vendor/autoload.php';
     ?>
 
     <div class='dog-holder'>
-    
+        <form action='post'>
+            <div class='dog-image'>
+                <img src='../../ashby.jpg' alt='doggy'>
+            </div>
+            <input type='submit' value='Make favourite!'>
+        </form>
     </div>
     <div class='dog-holder'>
-
+        <form action='post'>
+            <div class='dog-image'>
+                <img src='../../ashby.jpg' alt='doggy'>
+            </div>
+            <input type='submit' value='Make favourite!'>
+        </form>
     </div>
     <div class='dog-holder'>
-
+        <form action='post'>
+            <div class='dog-image'>
+                <img src='../../ashby.jpg' alt='doggy'>
+            </div>
+            <input type='submit' value='Make favourite!'>
+        </form>
     </div>
     <div class='dog-holder'>
-
+        <form action='post'>
+            <div class='dog-image'>
+                <img src='../../ashby.jpg' alt='doggy'>
+            </div>
+            <input type='submit' value='Make favourite!'>
+        </form>
     </div>
 </main>
 
