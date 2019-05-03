@@ -12,6 +12,8 @@ $dogManager = new \TopDog\Classes\DogManager($dbHandler, $dropdownMaker, $formHa
 if(isset($_POST["Breeds"])) {
     $dogManager->formGetId();
     $dogManager->populateDogs();
+    $dogManager->getFaveId();
+    $dogManager->setFavouriteDog();
     $dogImagesOutput = $dogManager->displayDogs();
 }
 
@@ -45,7 +47,8 @@ $dropdownOutput = $dogManager->makeDropdown();
 <main class="dog-house">
     <?php
         if(isset($dogImagesOutput)) {
-            echo $dogImagesOutput;
+            echo $dogImagesOutput['faveDog'];
+            echo $dogImagesOutput['dogs'];
         }
     ?>
 </main>

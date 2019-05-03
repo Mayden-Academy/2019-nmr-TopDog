@@ -119,7 +119,7 @@ class DbHandler
      *
      * @return string the ID of the favourite image
      */
-    public function getFavouriteDog (string $id) :string {
+    public function getFavouriteDog (string $id) : array {
         $db = $this->dbConnection->getConnection();
         $query= $db->prepare("SELECT `fav_dog` FROM `breed_table` WHERE `id`=:id");
         $query->bindParam(':id', $id);
