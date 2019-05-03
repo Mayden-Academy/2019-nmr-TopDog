@@ -45,7 +45,7 @@ $dropdownOutput = $dogManager->makeDropdown();
 <main class="dog-house">
     <?php
         if(isset($dogImagesOutput)) {
-            echo $dogImagesOutput;
+            echo $dogImagesOutput['dogs'];
         }
     ?>
 </main>
