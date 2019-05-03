@@ -70,8 +70,8 @@ class DogManager
         $this->faveId = $this->dbHandler->getFavouriteDog($this->selectId);
     }
 
-    public function faveToDb(){
-        $this->dbHandler->setFav($this->selectId, $this->faveId);
+    public function faveToDb($image_id, $breed_id){
+        $this->dbHandler->setFav($image_id, $breed_id);
     }
 
     /**

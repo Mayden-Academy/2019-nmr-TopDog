@@ -10,6 +10,9 @@ $dogDisplayer = new \TopDog\Classes\DogDisplayer();
 $dogManager = new \TopDog\Classes\DogManager($dbHandler, $dropdownMaker, $formHandler, $dogDisplayer);
 
 if(isset($_POST["Breeds"])) {
+    if (isset($_POST['favDogId'])) {
+        $dogManager->faveToDb($_POST['favDogId'], $_POST['Breeds']);
+    }
     $dogManager->formGetId();
     $dogManager->populateDogs();
     $dogManager->getFaveId();

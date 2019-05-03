@@ -108,7 +108,7 @@ class DbHandler
         $db = $this->dbConnection->getConnection();
         $query= $db->prepare("UPDATE `breed_table` SET `fav_dog` = :image_id WHERE `id` = :breed_id");
         $query->bindParam(':image_id', $image_id);
-        $query->bindParam(':image_id', $breed_id);
+        $query->bindParam(':breed_id', $breed_id);
         return $query->execute();
     }
 
