@@ -7,8 +7,6 @@ class DogManager
 	private $dropdownMaker;
 	private $dogs;
 	private $breeds;
-	private $formHandler;
-	private $selectId;
 	private $dogDisplayer;
 	private $faveId;
 
@@ -17,31 +15,21 @@ class DogManager
      *
      * @param DbHandler $dbHandler Db Connection from Class DbHandler
      * @param DropdownMaker $dropdownMaker Class for creating dropdowns
-     * @param FormHandler $formHandler Class for handling forms
      * @param DogDisplayer $dogDisplayer Class for displaying dog images
      */
-    public function __construct(DbHandler $dbHandler, DropdownMaker $dropdownMaker, FormHandler $formHandler, DogDisplayer $dogDisplayer)
+    public function __construct(DbHandler $dbHandler, DropdownMaker $dropdownMaker, DogDisplayer $dogDisplayer)
 	{
 		$this->dbHandler = $dbHandler;
 		$this->dropdownMaker = $dropdownMaker;
-		$this->formHandler = $formHandler;
 		$this->dogDisplayer = $dogDisplayer;
 
 	}
 
     /**
-     * Sets $selectId to the return of the getSelectIdValue method
-     */
-    public function formGetId ($breed_id) {
-        $this->formHandler->assignSelectValue($breed_id);
-        $this->selectId = $this->formHandler->getSelectIdValue();
-    }
-
-    /**
      * Sets $dogs to the return of the getDogs method
      */
-    public function populateDogs() {
-		$this->dogs = $this->dbHandler->getDogs($this->selectId);
+    public function populateDogs($breed_id) {
+		$this->dogs = $this->dbHandler->getDogs($breed_id);
 	}
 
     /**
@@ -49,7 +37,6 @@ class DogManager
      */
     public function getBreeds() {
 		$this->breeds = $this->dbHandler->getBreed();
-
 	}
 
     /**
@@ -59,8 +46,6 @@ class DogManager
 		return $this->dropdownMaker->populateDropdown($this->breeds);
 	}
 
-
-
     /**
      * Sets $dogDisplayer to the return of the displayDogs method
      */
@@ -68,8 +53,8 @@ class DogManager
 		return $this->dogDisplayer->displayDogs($this->dogs);
 	}
 
-	public function getFaveId(){
-        $this->faveId = $this->dbHandler->getFavouriteDog($this->selectId);
+	public function getFaveId($breed_id){
+        $this->faveId = $this->dbHandler->getFavouriteDog($breed_id);
     }
 
     public function faveToDb($image_id, $breed_id){
