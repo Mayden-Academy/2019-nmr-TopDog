@@ -41,7 +41,7 @@ class FormHandler
      * Gets the value of the favourite dog selected from the html form and assigns to favIdValue property
      */
     public function assignFavId() {
-        $this->formFav = $this->favId['fav_id'];
+        return $this->formFav = $this->favId['favDogId'];
     }
 
     /**

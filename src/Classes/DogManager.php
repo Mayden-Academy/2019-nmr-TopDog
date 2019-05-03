@@ -67,11 +67,22 @@ class DogManager
 	}
 
 	public function getFaveId(){
-        $this->formHandler->assignFavId();
-        $this->faveId = $this->formHandler->getFavId();
+        $this->faveId = $this->dbHandler->getFavouriteDog($this->selectId);
     }
 
     public function faveToDb(){
         $this->dbHandler->setFav($this->selectId, $this->faveId);
+    }
+
+    /**
+     * Checks the dogs array of object for the dog with the same id as the favourite one taken from the database and set
+     * the isFav variable to true to display it properly
+     */
+    public function setFavouriteDog() {
+        foreach ($this->dogs as $dog) {
+            if ($dog->getId() == $this->faveId['fav_dog']) {
+                $dog->setIsFav();
+            }
+        }
     }
 }
