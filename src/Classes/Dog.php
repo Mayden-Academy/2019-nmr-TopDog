@@ -46,6 +46,13 @@ class Dog
 	}
 
 	/**
+	 * This method sets the is fav property of a dog
+	 */
+	public function setIsFav(): void {
+		$this->is_fav = true;
+	}
+
+	/**
 	 * * This method gets all the information relating to a dog
 	 *
 	 * @return array containing all the information relating to a dog
