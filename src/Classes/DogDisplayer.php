@@ -10,7 +10,7 @@ class DogDisplayer
         foreach ($dogs as $dog) {
             $img = '<img src="' . $dog->getUrl() . '" alt="doggy">';
             $dogId = '<input type="hidden" id="favDogId" name="favDogId" value="' . $dog->getId() . '">';
-            $breedId = '<input type="hidden" name="breedId" value="' . $dog->getBreedId() . '">';
+            $breedId = '<input type="hidden" name="Breeds" value="' . $dog->getBreedId() . '">';
             if ($dog->getIsFav()) {
                 $favDiv = '<div class="best-dog"><div class="dog-image">' . $img . '</div><h3>The Best Doggo!</h3></div>';
             } else {

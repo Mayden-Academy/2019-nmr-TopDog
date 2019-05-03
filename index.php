@@ -1,18 +1,20 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
-$postGlobal = $_POST;
 $db = new \TopDog\Classes\PDOConnection();
 $dbHandler = new \TopDog\Classes\DbHandler($db);
 $dropdownMaker = new \TopDog\Classes\DropdownMaker();
-$formHandler = new \TopDog\Classes\FormHandler($postGlobal);
 $dogDisplayer = new \TopDog\Classes\DogDisplayer();
-$dogManager = new \TopDog\Classes\DogManager($dbHandler, $dropdownMaker, $formHandler, $dogDisplayer);
+$dogManager = new \TopDog\Classes\DogManager($dbHandler, $dropdownMaker, $dogDisplayer);
 
-if(isset($_POST["Breeds"])) {
-    $dogManager->formGetId();
-    $dogManager->populateDogs();
-    $dogManager->getFaveId();
+if(isset($_POST['Breeds'])) {
+    $breeds = $_POST['Breeds'];
+    if (isset($_POST['favDogId'])) {
+        $favDogId = $_POST['favDogId'];
+        $dogManager->faveToDb($favDogId, $breeds);
+    }
+    $dogManager->populateDogs($breeds);
+    $dogManager->getFaveId($breeds);
     $dogManager->setFavouriteDog();
     $dogImagesOutput = $dogManager->displayDogs();
 }
