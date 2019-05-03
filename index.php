@@ -17,16 +17,6 @@ if(isset($_POST["Breeds"])) {
     $dogImagesOutput = $dogManager->displayDogs();
 }
 
-//if(isset($_POST["favDogId"])) {
-//    $dogManager->favouriteDogData();
-//    $dogManager->getFaveId();
-//    $dogManager->faveToDb();
-//    $dogManager->formGetId();
-//    $dogManager->populateDogs();
-//    $dogManager->setFavouriteDog();
-//    $dogImagesOutput = $dogManager->displayDogs();
-//}
-
 $dogManager->getBreeds();
 $dropdownOutput = $dogManager->makeDropdown();
 
