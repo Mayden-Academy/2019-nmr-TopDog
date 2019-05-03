@@ -7,11 +7,12 @@ $dropdownMaker = new \TopDog\Classes\DropdownMaker();
 $dogDisplayer = new \TopDog\Classes\DogDisplayer();
 $dogManager = new \TopDog\Classes\DogManager($dbHandler, $dropdownMaker, $dogDisplayer);
 
-if(isset($_POST["Breeds"])) {
-    if (isset($_POST['favDogId'])) {
-        $dogManager->faveToDb($_POST['favDogId'], $_POST['Breeds']);
-    }
+if(isset($_POST['Breeds'])) {
     $breeds = $_POST['Breeds'];
+    if (isset($_POST['favDogId'])) {
+        $favDogId = $_POST['favDogId'];
+        $dogManager->faveToDb($favDogId, $breeds);
+    }
     $dogManager->populateDogs($breeds);
     $dogManager->getFaveId($breeds);
     $dogManager->setFavouriteDog();

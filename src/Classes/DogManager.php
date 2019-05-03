@@ -53,10 +53,16 @@ class DogManager
 		return $this->dogDisplayer->displayDogs($this->dogs);
 	}
 
+    /**
+     * Sets $faveId to the return of the getFavouriteDog method
+     */
 	public function getFaveId($breed_id){
         $this->faveId = $this->dbHandler->getFavouriteDog($breed_id);
     }
 
+    /**
+     * Calls setFav method
+     */
     public function faveToDb($image_id, $breed_id){
         $this->dbHandler->setFav($image_id, $breed_id);
     }
