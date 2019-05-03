@@ -66,11 +66,24 @@ class DogManager
 		return $this->dogDisplayer->displayDogs($this->dogs);
 	}
 
-	public function getFaveId(){
+
+    /**
+     * Gets the ID of the favourite dog from the DB
+     */
+    public function getFaveId(){
         $this->faveId = $this->dbHandler->getFavouriteDog($this->selectId);
     }
 
-    public function faveToDb($image_id, $breed_id){
+
+    /**
+     * Changes the favourite dog in the DB
+     *
+     * @param string $image_id The new favourite image
+     * @param string $breed_id The breed of the image you are changing
+     *
+     * @return bool If the query was successful or not
+     */
+    public function faveToDb(string $image_id, string $breed_id): bool{
         $this->dbHandler->setFav($image_id, $breed_id);
     }
 
