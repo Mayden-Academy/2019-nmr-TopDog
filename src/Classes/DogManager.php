@@ -30,6 +30,14 @@ class DogManager
 	}
 
     /**
+     * Sets $selectId to the return of the getSelectIdValue method
+     */
+    public function formGetId ($breed_id) {
+        $this->formHandler->assignSelectValue($breed_id);
+        $this->selectId = $this->formHandler->getSelectIdValue();
+    }
+
+    /**
      * Sets $dogs to the return of the getDogs method
      */
     public function populateDogs() {
@@ -51,13 +59,7 @@ class DogManager
 		return $this->dropdownMaker->populateDropdown($this->breeds);
 	}
 
-    /**
-     * Sets $selectId to the return of the getSelectIdValue method
-     */
-    public function formGetId () {
-        $this->formHandler->assignSelectValue();
-		$this->selectId = $this->formHandler->getSelectIdValue();
-	}
+
 
     /**
      * Sets $dogDisplayer to the return of the displayDogs method

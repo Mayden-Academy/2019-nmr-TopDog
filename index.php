@@ -1,11 +1,10 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
-$postGlobal = $_POST;
 $db = new \TopDog\Classes\PDOConnection();
 $dbHandler = new \TopDog\Classes\DbHandler($db);
 $dropdownMaker = new \TopDog\Classes\DropdownMaker();
-$formHandler = new \TopDog\Classes\FormHandler($postGlobal);
+$formHandler = new \TopDog\Classes\FormHandler();
 $dogDisplayer = new \TopDog\Classes\DogDisplayer();
 $dogManager = new \TopDog\Classes\DogManager($dbHandler, $dropdownMaker, $formHandler, $dogDisplayer);
 
@@ -13,7 +12,7 @@ if(isset($_POST["Breeds"])) {
     if (isset($_POST['favDogId'])) {
         $dogManager->faveToDb($_POST['favDogId'], $_POST['Breeds']);
     }
-    $dogManager->formGetId();
+    $dogManager->formGetId($_POST['Breeds']);
     $dogManager->populateDogs();
     $dogManager->getFaveId();
     $dogManager->setFavouriteDog();
