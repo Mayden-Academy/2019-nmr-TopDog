@@ -14,7 +14,9 @@ if(isset($_POST['Breeds'])) {
         $dogManager->faveToDb($favDogId, $breeds);
     }
     $dogManager->populateDogs($breeds);
+    if(isset($_POST['favDogId'])) {
     $dogManager->getFaveId($breeds);
+    }
     $dogManager->setFavouriteDog();
     $dogImagesOutput = $dogManager->displayDogs();
 }
