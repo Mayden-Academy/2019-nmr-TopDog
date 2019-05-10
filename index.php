@@ -9,16 +9,16 @@ $dogManager = new \TopDog\Classes\DogManager($dbHandler, $dropdownMaker, $dogDis
 
 if(isset($_POST['Breeds'])) {
     $breeds = $_POST['Breeds'];
-    if (isset($_POST['favDogId'])) {
-        $favDogId = $_POST['favDogId'];
-        $dogManager->faveToDb($favDogId, $breeds);
+    if ($breeds != 0) {
+        if (isset($_POST['favDogId'])) {
+            $favDogId = $_POST['favDogId'];
+            $dogManager->faveToDb($favDogId, $breeds);
+        }
+        $dogManager->populateDogs($breeds);
+        $dogManager->getFaveId($breeds);
+        $dogManager->setFavouriteDog();
+        $dogImagesOutput = $dogManager->displayDogs();
     }
-    $dogManager->populateDogs($breeds);
-    if(isset($_POST['favDogId'])) {
-    $dogManager->getFaveId($breeds);
-    }
-    $dogManager->setFavouriteDog();
-    $dogImagesOutput = $dogManager->displayDogs();
 }
 
 $dogManager->getBreeds();
@@ -38,7 +38,7 @@ $dropdownOutput = $dogManager->makeDropdown();
 
 <form method="POST">
     <select name="Breeds" title="Breeds">
-        <option>Choose your breed!</option>
+        <option value="0">Choose your breed!</option>
         <?php
         if (isset($dropdownOutput)) {
             echo $dropdownOutput;
